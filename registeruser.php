@@ -10,20 +10,9 @@ if(isset($_POST['registerbutton']) && $_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $sql = "INSERT INTO users(id, fname, lname, username, password, email) VALUES(NULL, '$first_name', '$last_name', '$username', '$password', '$email')";
     $result = mysqli_query($conn, $sql);
-    $_SESSION['register_user_message'] = "Registered a user successfully";
-    header("Location: register.php");
+    header("Location: login.php");
 }
 else{
     header("Location: register.php");
 }
-
-
-
-
-
-
-
-
-
-
 

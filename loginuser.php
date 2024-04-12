@@ -5,18 +5,24 @@ if(isset($_POST['loginbutton']) && $_SERVER['REQUEST_METHOD'] == 'POST'){
     $username = $_POST['username'];
     $password = md5($_POST['password']);
 
-    $sql = "SELECT count(*) as rowcount FROM users WHERE username='$username' and password='$password'";
+    $sql = "SELECT * FROM users WHERE username='$username' and password='$password'";
     $result = mysqli_query($conn, $sql);
 
-    $row = mysqli_fetch_assoc($result);
+    if(mysqli_num_rows($result) === 1){
+        $row = mysqli_fetch_assoc($result);
+        $_SESSION['isLoggedIn'] = true;
+        $_SESSION['userid'] = $row['id'];
+        $_SESSION['firstname'] = $row['fname'];
+        $_SESSION['username'] = $row['username'];
 
-    if($row['rowcount'] == 0){
-        $_SESSION['register_user_message'] = "Something went wrong";
-        header("Location: login.php");
+        header("Location: index.php");
     }
     else{
-        echo "Success section....";
+        $_SESSION['register_user_message'] = "Incorrect Credentials";
+        header("Location: login.php");
     }
+
+
 
 }
 else{

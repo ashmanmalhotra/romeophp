@@ -11,6 +11,19 @@
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.php">About</a></li>
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.php">Sample Post</a></li>
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.php">Contact</a></li>
+
+                <?php
+                    if(isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn']==true)
+                    {
+                        // Show the Logout Option link
+                        echo '<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="logout.php">Logout</a></li>';
+                        echo '<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="./admin/index.php">Dashboard</a></li>';
+                    }
+                    else{
+                        echo '<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="login.php">Login</a></li>';
+                        echo '<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="register.php">Register</a></li>';
+                    }
+                ?>
             </ul>
         </div>
     </div>
